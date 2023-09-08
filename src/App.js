@@ -1,7 +1,14 @@
-import React from 'react';
-import Quiz from './components/Quiz'; // Importera Quiz-komponenten från mappen components
+import React, { useState } from 'react';
+import firebase from 'firebase/app'; // Importera firebase
+import 'firebase/auth'; // Importera Firebase auth
+import Quiz from './components/Quiz';
+import Login from './components/Login';
 
 function App() {
+  const [email, setEmail] = useState(''); // Definiera email som en state-variabel
+  const [password, setPassword] = useState(''); // Definiera password som en state-variabel
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -15,15 +22,3 @@ function App() {
 
 export default App;
 
-const auth = firebase.auth();
-
-auth.signInWithEmailAndPassword(email, password)
-  .then((userCredential) => {
-    // Inloggning lyckades
-    const user = userCredential.user;
-  })
-  .catch((error) => {
-    // Hantera fel
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });

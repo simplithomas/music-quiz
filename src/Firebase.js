@@ -1,33 +1,22 @@
-import React from 'react';
-import firebase from './firebase'; // Importera firebase från firebase.js
-import Quiz from './components/Quiz';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-function App() {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCA_RR0jAVdwi6RN-r7CT_YoZR7MUI7nOE",
+  authDomain: "musik-quiz-e23e3.firebaseapp.com",
+  projectId: "musik-quiz-e23e3",
+  storageBucket: "musik-quiz-e23e3.appspot.com",
+  messagingSenderId: "729567582733",
+  appId: "1:729567582733:web:fbbc6e7fc42f45beb3d344",
+  measurementId: "G-5T1VEBV0C4"
+};
 
-  const handleLogin = () => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Inloggning lyckades
-      })
-      .catch((error) => {
-        // Hantera fel
-      });
-  };
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Music Quiz App</h1>
-        <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-        <button onClick={handleLogin}>Logga in</button>
-        <Quiz />
-      </header>
-    </div>
-  );
-}
-
-export default App;
-    
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+export { app, analytics };
